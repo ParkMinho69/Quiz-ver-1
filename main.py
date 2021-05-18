@@ -1,6 +1,6 @@
 from tkinter import *
 import random
-from PIL import ImageTK, Image
+from PIL import ImageTk, Image
 
 global questions_answers
 names_list = []
@@ -22,14 +22,15 @@ def randomiser():
 class Quizstarter:
       def __init__ (self, parent):
             background_color="#AC77E9"
+
             #frame set up
             self.quiz_frame = Frame(parent, bg = background_color, padx=100, pady=100)
             self.quiz_frame.grid()
             
             background_color="OldLace"# to set it as as background for all the widgets
 
-            self.bg_images= Images .open("smoke.jfif")#need to use image if need to resize
-            self.bg_image = self.bg_images.resize( 450, 350, Image.ANTIALIAS)
+            self.bg_images= Image.open("smoke.jfif")#need to use image if need to resize
+            self.bg_image = self.bg_images.resize( (450, 350), Image.ANTIALIAS)
             self.bg_image = ImageTk.PhotoImage(self.bg_image)
 
             #widgets go below
@@ -37,10 +38,9 @@ class Quizstarter:
             self.heading_label.grid(row=0, padx=20)
 
             #label for image
-            self.image_label= Label(self.quiz_frame, images=self.bg_image)
+            self.image_label= Label(self.quiz_frame, image=self.bg_image)
             #self.image_label.grid(row=09, colum=1,) #on the right side
             self.image_label.place(x=0, y=0, relwidth=1, relheight=1) #make label 1 to fit the parent window always
-
 
             # label to ask for Name
             self.user_label = Label(self.quiz_frame, text="Enter your name below:", bg="#9982E6")
@@ -54,10 +54,6 @@ class Quizstarter:
             self.continue_button = Button(self.quiz_frame, text="Continue", font=("mishka family", "13", "normal"), bg="#878CE3", command=self.name_collection)
             self.continue_button.grid(row=3, padx=20, pady=20)
 
-
-
-  
-    
     
       def name_collection(self):
             name=self.entry_box.get() 
