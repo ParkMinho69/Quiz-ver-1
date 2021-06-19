@@ -61,9 +61,9 @@ def randomiser():
 
 class Quizstarter:
   def __init__ (self, parent):
-    background_color="#9982E6"
+    background_color="seashell3"
     
-    self.bg_image = Image.open("mpic.jpg")#adding a background image to the quiz program for the first screen 
+    self.bg_image = Image.open("cookingearth.jpg")#adding a background image to the quiz program for the first screen 
     self.bg_image = self.bg_image.resize((650, 500), Image.ANTIALIAS)#the sizing for the image 
     self.bg_image = ImageTk.PhotoImage(self.bg_image)
      
@@ -71,50 +71,42 @@ class Quizstarter:
             #frame set up
     self.quiz_frame = Frame(parent, bg = background_color, padx=0, pady=0)
     self.quiz_frame.grid()
+
     self.image_label = Label(self.quiz_frame, image=self.bg_image)
     self.image_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 
     #widgets go below
-    self.intro_label = Label(self.quiz_frame, text="This is a little introduction to the Greek Mythology Gods and Goddesses: ", bg="#878CE3")
+    self.intro_label = Label(self.quiz_frame, text="This is a little introduction to the Greek Mythology Gods and Goddesses: ", bg="seashell3")
     self.intro_label.grid(row=0, padx=20, pady=20)
 
 
-    self.intro_label = Label(self.quiz_frame, text="The Greeks were polytheistic in their religious beliefs. ", bg="#9982E6")
+    self.intro_label = Label(self.quiz_frame, text="The Greeks were polytheistic in their religious beliefs. ", bg="seashell3")
     self.intro_label.grid(row=1, padx=20)
 
-    self.intro_label = Label(self.quiz_frame, text="Meaning that they believed in and worshiped many different gods. ", bg="#9982E6")
+    self.intro_label = Label(self.quiz_frame, text="Meaning that they believed in and worshiped many different gods. ", bg="seashell3")
     self.intro_label.grid(row=2, padx=20)
 
-    self.intro_label = Label(self.quiz_frame, text="In Greek mythology, the gods often represented different forms of nature.", bg="#9982E6")
+    self.intro_label = Label(self.quiz_frame, text="In Greek mythology, the gods often represented different forms of nature.", bg="seashell3")
     self.intro_label.grid(row=3, padx=20)
 
-    self.intro_label = Label(self.quiz_frame, text="Their religion/mythology had no formal structure with the exception", bg="#9982E6")
+    self.intro_label = Label(self.quiz_frame, text="Their religion/mythology had no formal structure with the exception", bg="seashell3")
     self.intro_label.grid(row=4, padx=20)
 
-    self.intro_label = Label(self.quiz_frame, text="of various festivals held in honor of the gods.", bg="#9982E6")
+    self.intro_label = Label(self.quiz_frame, text="of various festivals held in honor of the gods.", bg="seashell3")
     self.intro_label.grid(row=5, padx=20)
-
-    self.intro_label = Label(self.quiz_frame, text="There was no sacred book or code of conduct to live by like the bible for example.", bg="#9982E6")
-    self.intro_label.grid(row=6, padx=20)
-
-    self.intro_label = Label(self.quiz_frame, text="The most powerful Greek gods were known as the Olympians, who live on ", bg="#9982E6")
-    self.intro_label.grid(row=7, padx=20)
-
-    self.intro_label = Label(self.quiz_frame, text="the highest mountain in Greece, called Mount Olympus", bg="#9982E6")
-    self.intro_label.grid(row=8, padx=20)
 
 
     #label to ask for permison to continue
-    self.user_label = Label(self.quiz_frame, text="Would you like to continue:",bg="#9982E6")
+    self.user_label = Label(self.quiz_frame, text="Would you like to continue:",bg="seashell3")
     self.user_label.grid(row=9, padx=20, pady=10)
 
     #create yes Button
-    self.yes_button = Button(self.quiz_frame, text="Yes", font=("Helvetica", "13", "normal"), bg="#878CE3", command=self.yes)
+    self.yes_button = Button(self.quiz_frame, text="Yes", font=("Helvetica", "13", "normal"), bg="sienna1", command=self.yes)
     self.yes_button.grid(row=10, padx=12, pady=5,)
         
     #create No Button
-    self.no_button = Button(self.quiz_frame, text="No", font=("Helvetica", "13", "normal"), bg="#878CE3", command=self.no)
+    self.no_button = Button(self.quiz_frame, text="No", font=("Helvetica", "13", "normal"), bg="indianred1", command=self.no)
     self.no_button.grid(row=11, padx=12, pady=5,)
 
   def yes(self):
@@ -129,25 +121,56 @@ class Quizstarter:
 
 class username:
   def __init__ (self, parent):
-    background_color="#9982E6"
-
+    background_color="darkorchid1"
+   
+   #background image
+    self.bg_image = Image.open("wall.jpg") #same image for the 2nd component  
+    self.bg_image = self.bg_image.resize((450, 350), Image.ANTIALIAS) #sizing of the background image 
+    self.bg_image = ImageTk.PhotoImage(self.bg_image)
+     
     #frame set up
-    self.quiz_frame = Frame(parent, bg = background_color, padx=100, pady=100)
-    self.quiz_frame.grid()
+    self.quiz_frame = Frame(parent, bg = background_color, padx=0,pady=0)
+    self.quiz_frame.grid() 
+        
+     #image Label   
+    self.image_label = Label(self.quiz_frame, image=self.bg_image)
+    self.image_label.place(x=0, y=0, relwidth=1, relheight=1)
+    
+    #exit button 
+    self.exit_button = Button(self.quiz_frame,text="Exit Quiz", font=("Comic Sans MS", "8"), command=root.destroy)
+    self.exit_button.grid(row=4, sticky=E, padx=10, pady=0)#sizing of the exit button
 
-    #label to ask for user's name
-    self.quiz_label = Label( self.quiz_frame, text="What is your name:",bg="#9982E6")
-    self.quiz_label.grid(row=1, padx=20, pady=10)
+    #username label
+    self.user_label = Label(self.quiz_frame, text="What is your name: ", font=("Comic Sans MS", "13"), bg="seashell3")
+    self.user_label.grid(row=2, padx=90, pady=25)#placing of the username label
+    
+    #continue button to continue on to the next component where the questions are asked 
+    self.continue_button = Button(self.quiz_frame, text="Continue", font=("Helvetica", "13", "normal"), bg="sienna1",  command=self.contbutton)
+    self.continue_button.grid(row=4, padx=0, pady=35)#plaing of the continue button
+ 
+    #entry box to enter the username 
+    self.entry_box = Entry(self.quiz_frame)
+    self.entry_box.grid(row=3, padx=90, pady=25)
 
-    #entry box
-    self.entry_box = Entry( self.quiz_frame)
-    self.entry_box.grid(row=2, padx=20, pady=10)
 
-    #confirm button
-    self.confirm_button = Button( self.quiz_frame, text="Confirm", font=("Helvetica", "12",), bg="#B8C0FF", command=self.name_collection)
-    self.confirm_button.grid(row=3)
+  #trial and error for the continue button so it the user left the box empty then 
+  def contbutton(self):
+    if len(self.entry_box.get()) ==  0:
+      self.continue_button.config(text="Please enter a Username", font=("Comic Sans MS", "10"))
 
+    else:#the user can only have 10 values this will stop the user from contuining 
+      if len(self.entry_box.get()) > 15:
+        self.continue_button.config(text="username has to be \nunder 15 values", font=("Comic Sans MS", "10"))
 
+      else:#the user can only have 10 values this will stop the user from contuining
+       if len(self.entry_box.get()) <= 2:
+         self.continue_button.config(text="username has to be \n more than 2 values", font=("Comic Sans MS", "10"))
+            
+       else:
+         self.name_collection()#coninuation from the continue button to the next compnent(the questions)
+    
+
+  
   def name_collection(self):
     name=self.entry_box.get()
     names_list.append(name)
@@ -159,7 +182,7 @@ class username:
 
 class Quiz:
   def __init__ (self, parent):
-    background_color="#9982E6"
+    background_color="seashell3"
     #frame set up
     self.quiz_frame =Frame(parent, bg = background_color, padx=100, pady=100)
     self.quiz_frame.grid()
@@ -173,19 +196,19 @@ class Quiz:
     self.var=IntVar()
 
     #radio button 1
-    self.rb1 = Radiobutton(self.quiz_frame, text = questions_answers[qnum][1], font=("Helvetica", "12"), bg=background_color, value=1, variable=self.var)
+    self.rb1 = Radiobutton(self.quiz_frame, text = questions_answers[qnum][1], font=("Helvetica", "12"), value=1, variable=self.var)
     self.rb1.grid(row=1)
 
     #radio button 2
-    self.rb2 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][2], font=("Helvetica", "12"), bg=background_color, value=2, variable=self.var)
+    self.rb2 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][2], font=("Helvetica", "12"),  value=2, variable=self.var)
     self.rb2.grid(row=2)
 
     #radio button 3
-    self.rb3 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][3], font=("Helvetica", "12"), bg=background_color, value=3, variable=self.var)
+    self.rb3 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][3], font=("Helvetica", "12"),  value=3, variable=self.var)
     self.rb3.grid(row=3)
 
     #radio button 4
-    self.rb4 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][4], font=("Helvetica", "12"), bg=background_color, value=4, variable=self.var)
+    self.rb4 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][4], font=("Helvetica", "12"), value=4, variable=self.var)
     self.rb4.grid(row=4)
 
     #answer confirm button
@@ -208,15 +231,15 @@ class Quiz:
           self.rb4.config(text=questions_answers[qnum][4])
 
 
-
 #confirm button for the questions window to be better 
   def test_progress(self):#pass the users choice
+
     global score#this score us there to be acessed to everyone 
     scr_label = self.score_label#shhowing the score because it will be different each time a question is answered 
     choice = self.var.get()#get the users choice
     if len(asked)>9:#to determine it its the last question to end the quiz after
       if choice == questions_answers[qnum][5]:#cheking the qnum has the correct answer that is stored in index 6
-        score+=1#adding a point after each correct answer 
+        score+=1#adding a point afth=er each correct answer 
         scr_label.configure(text=score)#it will change the score to the new score each time 
         self.confirm_button.config(text="confirm")#will change the test on the button to confirm
         self.endScreen()#to open endScreen when quiz is completed 
