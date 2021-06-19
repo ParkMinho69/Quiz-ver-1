@@ -2,7 +2,6 @@ from tkinter import *
 import random
 from PIL import ImageTk, Image
 
-
 names = []
 names_list = []
 asked =[]
@@ -49,7 +48,6 @@ questions_answers = {
     ],
  }
 
-
 def randomiser():
   global qnum
   qnum = random.randint(1,10)
@@ -58,15 +56,13 @@ def randomiser():
   elif qnum not in asked:
     randomiser()
 
-
 class Quizstarter:
   def __init__ (self, parent):
     background_color="seashell3"
     
     self.bg_image = Image.open("cookingearth.jpg")#adding a background image to the quiz program for the first screen 
-    self.bg_image = self.bg_image.resize((650, 500), Image.ANTIALIAS)#the sizing for the image 
-    self.bg_image = ImageTk.PhotoImage(self.bg_image)
-     
+    self.bg_image = self.bg_image.resize((450, 400), Image.ANTIALIAS)#the sizing for the image 
+    self.bg_image = ImageTk.PhotoImage(self.bg_image)  
 
             #frame set up
     self.quiz_frame = Frame(parent, bg = background_color, padx=0, pady=0)
@@ -75,11 +71,9 @@ class Quizstarter:
     self.image_label = Label(self.quiz_frame, image=self.bg_image)
     self.image_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-
     #widgets go below
     self.intro_label = Label(self.quiz_frame, text="This is a little introduction to the Greek Mythology Gods and Goddesses: ", bg="seashell3")
     self.intro_label.grid(row=0, padx=20, pady=20)
-
 
     self.intro_label = Label(self.quiz_frame, text="The Greeks were polytheistic in their religious beliefs. ", bg="seashell3")
     self.intro_label.grid(row=1, padx=20)
@@ -96,17 +90,16 @@ class Quizstarter:
     self.intro_label = Label(self.quiz_frame, text="of various festivals held in honor of the gods.", bg="seashell3")
     self.intro_label.grid(row=5, padx=20)
 
-
     #label to ask for permison to continue
     self.user_label = Label(self.quiz_frame, text="Would you like to continue:",bg="seashell3")
     self.user_label.grid(row=9, padx=20, pady=10)
 
     #create yes Button
-    self.yes_button = Button(self.quiz_frame, text="Yes", font=("Helvetica", "13", "normal"), bg="sienna1", command=self.yes)
+    self.yes_button = Button(self.quiz_frame, text="Yes", font=("Helvetica","12", "normal"), bg="#FFD6FF", command=self.yes)
     self.yes_button.grid(row=10, padx=12, pady=5,)
         
     #create No Button
-    self.no_button = Button(self.quiz_frame, text="No", font=("Helvetica", "13", "normal"), bg="indianred1", command=self.no)
+    self.no_button = Button(self.quiz_frame, text="No", font=("Helvetica","12", "normal"), bg="#BBD0FF", command=self.no)
     self.no_button.grid(row=11, padx=12, pady=5,)
 
   def yes(self):
@@ -125,7 +118,7 @@ class username:
    
    #background image
     self.bg_image = Image.open("wall.jpg") #same image for the 2nd component  
-    self.bg_image = self.bg_image.resize((450, 350), Image.ANTIALIAS) #sizing of the background image 
+    self.bg_image = self.bg_image.resize((650, 500), Image.ANTIALIAS) #sizing of the background image 
     self.bg_image = ImageTk.PhotoImage(self.bg_image)
      
     #frame set up
@@ -137,39 +130,36 @@ class username:
     self.image_label.place(x=0, y=0, relwidth=1, relheight=1)
     
     #exit button 
-    self.exit_button = Button(self.quiz_frame,text="Exit Quiz", font=("Comic Sans MS", "8"), command=root.destroy)
+    self.exit_button = Button(self.quiz_frame,text="Exit Quiz", font=("Helvetica","12", "normal"), command=root.destroy)
     self.exit_button.grid(row=4, sticky=E, padx=10, pady=0)#sizing of the exit button
 
     #username label
-    self.user_label = Label(self.quiz_frame, text="What is your name: ", font=("Comic Sans MS", "13"), bg="seashell3")
+    self.user_label = Label(self.quiz_frame, text="What is your name: ", font=("Helvetica","12", "normal"), bg="seashell3")
     self.user_label.grid(row=2, padx=90, pady=25)#placing of the username label
     
     #continue button to continue on to the next component where the questions are asked 
-    self.continue_button = Button(self.quiz_frame, text="Continue", font=("Helvetica", "13", "normal"), bg="sienna1",  command=self.contbutton)
+    self.continue_button = Button(self.quiz_frame, text="Continue", font=("Helvetica","12", "normal"), bg="sienna1",  command=self.contbutton)
     self.continue_button.grid(row=4, padx=0, pady=35)#plaing of the continue button
  
     #entry box to enter the username 
     self.entry_box = Entry(self.quiz_frame)
     self.entry_box.grid(row=3, padx=90, pady=25)
 
-
   #trial and error for the continue button so it the user left the box empty then 
   def contbutton(self):
     if len(self.entry_box.get()) ==  0:
-      self.continue_button.config(text="Please enter a Username", font=("Comic Sans MS", "10"))
+      self.continue_button.config(text="Please enter a Username", font=("Helvetica","12", "normal"))
 
     else:#the user can only have 10 values this will stop the user from contuining 
       if len(self.entry_box.get()) > 15:
-        self.continue_button.config(text="username has to be \nunder 15 values", font=("Comic Sans MS", "10"))
+        self.continue_button.config(text="username has to be \nunder 15 values", font=("Helvetica","12", "normal"))
 
       else:#the user can only have 10 values this will stop the user from contuining
        if len(self.entry_box.get()) <= 2:
-         self.continue_button.config(text="username has to be \n more than 2 values", font=("Comic Sans MS", "10"))
+         self.continue_button.config(text="username has to be \n more than 2 values", font=("Helvetica","12", "normal"))
             
        else:
          self.name_collection()#coninuation from the continue button to the next compnent(the questions)
-    
-
   
   def name_collection(self):
     name=self.entry_box.get()
@@ -182,12 +172,13 @@ class username:
 
 class Quiz:
   def __init__ (self, parent):
-    background_color="seashell3"
+    background_color="#E7C6FF"
+     
     #frame set up
-    self.quiz_frame =Frame(parent, bg = background_color, padx=100, pady=100)
-    self.quiz_frame.grid()
+    self.quiz_frame = Frame(parent, bg = background_color, padx=0,pady=0)
+    self.quiz_frame.grid() 
     randomiser()
-       
+    
     #question
     self.questions_label=Label(self.quiz_frame, text=questions_answers[qnum][0], bg=background_color)
     self.questions_label.grid(row=0, padx=10, pady=10)
@@ -196,29 +187,28 @@ class Quiz:
     self.var=IntVar()
 
     #radio button 1
-    self.rb1 = Radiobutton(self.quiz_frame, text = questions_answers[qnum][1], font=("Helvetica", "12"), value=1, variable=self.var)
+    self.rb1 = Radiobutton(self.quiz_frame, text = questions_answers[qnum][1], font=("Helvetica","12", "normal"), bg=background_color,value=1, variable=self.var)
     self.rb1.grid(row=1)
 
     #radio button 2
-    self.rb2 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][2], font=("Helvetica", "12"),  value=2, variable=self.var)
+    self.rb2 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][2], font=("Helvetica","12", "normal"), bg=background_color,  value=2, variable=self.var)
     self.rb2.grid(row=2)
 
     #radio button 3
-    self.rb3 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][3], font=("Helvetica", "12"),  value=3, variable=self.var)
+    self.rb3 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][3], font=("Helvetica","12", "normal"), bg=background_color, value=3, variable=self.var)
     self.rb3.grid(row=3)
 
     #radio button 4
-    self.rb4 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][4], font=("Helvetica", "12"), value=4, variable=self.var)
+    self.rb4 = Radiobutton (self.quiz_frame, text = questions_answers[qnum][4], font=("Helvetica","12", "normal"), bg=background_color, value=4, variable=self.var)
     self.rb4.grid(row=4)
 
     #answer confirm button
-    self.confirm_button = Button(self.quiz_frame, text="Confirm", font=("Helvetica", "12", ), bg="#B8C0FF", command=self.test_progress)
+    self.confirm_button = Button(self.quiz_frame, text="Confirm", font=("Helvetica","12", "normal", ), bg="#B8C0FF", command=self.test_progress)
     self.confirm_button.grid(row=6)
 
     #score label 
-    self.score_label = Label(self.quiz_frame, text="SCORE", font=("Tm Cen MT","12"), bg=background_color)
+    self.score_label = Label(self.quiz_frame, text="SCORE", font=("Tm Cen MT","12", "normal" ), bg=background_color)
     self.score_label.grid(row=8)
-
    
 #the question label to new questions and possible answers as new radio button choices
   def question_setup(self):
@@ -255,8 +245,7 @@ class Quiz:
       if choice == 0:#if the user doesnt select and option
         self.confirm_button.config(text="Pick an option")#then the confirm button will say plase try again until the questions is answered and an option is selected
         choice=self.var.get()#still get the answer if they chose it
-       
-        
+           
       else:#if choice is correct
         if choice == questions_answers[qnum][5]:#if the choice is correct
           score+=1
@@ -270,8 +259,28 @@ class Quiz:
           scr_label.configure(text="Incorrect! The answer was:" + questions_answers[qnum][1])#telling the correct answer 
           self.confirm_button.config(text="Confirm")
           self.question_setup()#moving to the next question
+         
+class End:
+  def __init__(self, parent): # this function is called every time the class is being used to create a new object
+    background ="rosybrown1"
+    self.end_box = Toplevel(root)
+    self.end_box.title("End Box")
 
+    self.end_frame = Frame(self.end_box, pady=40, padx=45, bg=background)
+    self.end_frame.grid()
+    
+    #end heading 
+    end_heading = Label (self.end_frame, text='You have now Completed the quiz!', font=("Comic Sans MS", "11"), bg=background, pady=15)
+    end_heading.grid(row=0)
+      
+    #exit button to end the quiz 
+    exit_button = Button (self.end_frame, text='Exit quiz', width=10, font=("Comic Sans MS", "11"), command=self.close_end, pady=10, padx=10)
+    exit_button.grid(row=4, pady=20, padx=5, sticky=E)
 
+    #if 1st place is available/ what they got 
+    self.listLabel = Label(self.end_frame, text="You are in 1st place!", font=("Comic Sans MS", "11"), width=40, bg=background, padx=10, pady=10)
+    self.listLabel.grid(row=2)
+    
   def endScreen(self):
     root.withdraw()
     name = names[0]
@@ -280,7 +289,7 @@ class Quiz:
       file = open("leaderBoard.txt", "w")
     
     else:
-      file.write(str(score))#turns the sucess rate into a string 
+      file.write( str(score))#turns the sucess rate into a string 
       file.write(" - ")#writes into the text file
       file.write(name+"\n")#writes the names into the text files and goes to a new line (\n)
       file.close()#closes the file
@@ -296,42 +305,19 @@ class Quiz:
     file.close()#closes the files 
     top.sort()
     top.reverse()
-    return_string = "Your final score is: "
+    return_string = " Your final score is: "
     for i in range (len(top)):
       return_string += "{} - {}\n".format(top[i][0], top[i][1])
       print(return_string)#for testing to show on the console
       
-      open_endscreen = End(root)
-      open_endscreen.listLabel.config(text=return_string)#this will config the label in the end screen class which is displaying the names of the top 5
-
-class End:
-  def __init__(self, parent): # this function is called every time the class is being used to create a new object
-    background ="#62E4CF"
-    self.end_box = Toplevel(root)
-    self.end_box.title("End Box")
-
-    self.end_frame = Frame(self.end_box, pady=70, padx=45, bg=background)
-    self.end_frame.grid()
-      
-    #end heading 
-    end_heading = Label (self.end_frame, text='You have now Completed the quiz', font=("Comic Sans MS", "11"), bg=background, pady=15)
-    end_heading.grid(row=0)
-    #exit button to end the quiz 
-    exit_button = Button (self.end_frame, text='Exit quiz>>', width=10, font=("Comic Sans MS", "11"), command=self.close_end, pady=10, padx=10)
-    exit_button.grid(row=4, pady=20, padx=5, sticky=E)
-
-    #if 1st place is available/ what they got 
-    self.listLabel = Label(self.end_frame, text="You are in 1st place", font=("Comic Sans MS", "11"), width=40, bg=background, padx=10, pady=10)
-    self.listLabel.grid(row=2)
-
-
+    open_endscreen = End(root)
+    open_endscreen.listLabel.config(text=return_string)#this will config the label in the end screen class which is displaying the names of the top 5
+    End(root)  
 
   def close_end(self):
     self.end_frame.destroy()
     self.end_box.destroy()
     root.withdraw()
-
-
 
 #Entry
 if __name__=="__main__":
