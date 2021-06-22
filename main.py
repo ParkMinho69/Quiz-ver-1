@@ -8,43 +8,43 @@ asked =[]
 score =0
 questions_answers = {
   1:["Who is the king of gods and the god of the sky and thunder?",
-      'Zeus', 'Hermes', 'Minotaur', 'Aptoide', 1
+      'Zeus', 'Hermes', 'Minotaur', 'Aptoide', 'Zeus', 1
     ],
 
   2:["How long did the Trojan war last?",
-      '10 years', '20 years', '5 years', '6 years', 1
+       '20 years', '10 years', '5 years', '6 years', '10 years', 2
       ],
 
   3:["Which goddess is Apollo’s twin sister?",
-      'Artemis', 'Asteria', 'Athena', 'Aphrodite', 1
+       'Asteria', 'Athena', 'Artemis', 'Aphrodite', 'Artemis', 3
       ],
 
   4:["What is Demeter the goddess of?",
-      'Agriculture', 'Destruction', 'The moonr', 'Oracles', 1
+       'Destruction', 'The moonr', 'Oracles', 'Agriculture', 'Agriculture', 4
       ],
 
   5:["Which of these things was the only one left in Pandora’s box?",
-      'Hope', 'Trust', 'Joy', 'Wisdom', 1
+       'Trust', 'Joy', 'Hope', 'Wisdom', 'Hope', 3
     ],
   
   6:["What is the name of Hades’ three-headed dog?",
-      'Cerberus', 'Mars', 'Charon', 'Charybdis', 1
+      'Cerberus', 'Mars', 'Charon', 'Charybdis', 'Cerberus', 1
     ],
 
   7:["who is the god of the sea?",
-      'Poseidon', 'Zeus', 'Athena', 'Hades', 1
+       'Zeus', 'Poseidon', 'Athena', 'Hades', 'Poseidon', 2
     ],
 
   8:["How was Athena born?",
-      'From Zeus head', 'From flowers', 'Hera womb', 'From the Ocean', 1
+       'From flowers', 'Hera womb', 'From Zeus head', 'From the Ocean', 'From Zeus head', 3
     ],
 
   9:["Zeus and Hades were brothers with which god?",
-      'Poseidon', 'Hermes', 'Apollo', 'Ares', 1
+      'Poseidon', 'Hermes', 'Apollo', 'Ares', 'Poseidon', 1
     ],
 
   10:["What did Eros golden arrow make people do?",
-      'Fall in love', 'Intelligent', 'Swim', 'Dance', 1
+      'Intelligent', 'Swim', 'Dance', 'Fall in love',  'Fall in love', 4
     ],
  }
 
@@ -53,7 +53,7 @@ def randomiser():
   qnum = random.randint(1,10)
   if qnum not in asked:
       asked.append(qnum)
-  elif qnum not in asked:
+  elif qnum in asked:
     randomiser()
 
 class Quizstarter:
@@ -61,7 +61,7 @@ class Quizstarter:
     background_color="seashell3"
     
     self.bg_image = Image.open("cookingearth.jpg")#adding a background image to the quiz program for the first screen 
-    self.bg_image = self.bg_image.resize((450, 400), Image.ANTIALIAS)#the sizing for the image 
+    self.bg_image = self.bg_image.resize((650, 550), Image.ANTIALIAS)#the sizing for the image 
     self.bg_image = ImageTk.PhotoImage(self.bg_image)  
 
             #frame set up
@@ -118,7 +118,7 @@ class username:
    
    #background image
     self.bg_image = Image.open("wall.jpg") #same image for the 2nd component  
-    self.bg_image = self.bg_image.resize((650, 500), Image.ANTIALIAS) #sizing of the background image 
+    self.bg_image = self.bg_image.resize((548, 309), Image.ANTIALIAS) #sizing of the background image 
     self.bg_image = ImageTk.PhotoImage(self.bg_image)
      
     #frame set up
@@ -162,6 +162,7 @@ class username:
          self.name_collection()#coninuation from the continue button to the next compnent(the questions)
   
   def name_collection(self):
+    global names_list
     name=self.entry_box.get()
     names_list.append(name)
     print(names_list) #testing
@@ -223,12 +224,13 @@ class Quiz:
 
 #confirm button for the questions window to be better 
   def test_progress(self):#pass the users choice
+    print(asked)
 
     global score#this score us there to be acessed to everyone 
     scr_label = self.score_label#shhowing the score because it will be different each time a question is answered 
     choice = self.var.get()#get the users choice
     if len(asked)>9:#to determine it its the last question to end the quiz after
-      if choice == questions_answers[qnum][5]:#cheking the qnum has the correct answer that is stored in index 6
+      if choice == questions_answers[qnum][6]:#cheking the qnum has the correct answer that is stored in index 6
         score+=1#adding a point afth=er each correct answer 
         scr_label.configure(text=score)#it will change the score to the new score each time 
         self.confirm_button.config(text="confirm")#will change the test on the button to confirm
@@ -247,7 +249,7 @@ class Quiz:
         choice=self.var.get()#still get the answer if they chose it
            
       else:#if choice is correct
-        if choice == questions_answers[qnum][5]:#if the choice is correct
+        if choice == questions_answers[qnum][6]:#if the choice is correct
           score+=1
           scr_label.configure(text=score)
           self.confirm_button.config(text="Confirm")
@@ -256,34 +258,13 @@ class Quiz:
         else:#if the choice was inccorect
           print(choice)
           score+=0
-          scr_label.configure(text="Incorrect! The answer was:" + questions_answers[qnum][1])#telling the correct answer 
+          scr_label.configure(text="Incorrect! The answer was:" + questions_answers[qnum][5])#telling the correct answer 
           self.confirm_button.config(text="Confirm")
           self.question_setup()#moving to the next question
-         
-class End:
-  def __init__(self, parent): # this function is called every time the class is being used to create a new object
-    background ="rosybrown1"
-    self.end_box = Toplevel(root)
-    self.end_box.title("End Box")
 
-    self.end_frame = Frame(self.end_box, pady=40, padx=45, bg=background)
-    self.end_frame.grid()
-    
-    #end heading 
-    end_heading = Label (self.end_frame, text='You have now Completed the quiz!', font=("Comic Sans MS", "11"), bg=background, pady=15)
-    end_heading.grid(row=0)
-      
-    #exit button to end the quiz 
-    exit_button = Button (self.end_frame, text='Exit quiz', width=10, font=("Comic Sans MS", "11"), command=self.close_end, pady=10, padx=10)
-    exit_button.grid(row=4, pady=20, padx=5, sticky=E)
-
-    #if 1st place is available/ what they got 
-    self.listLabel = Label(self.end_frame, text="You are in 1st place!", font=("Comic Sans MS", "11"), width=40, bg=background, padx=10, pady=10)
-    self.listLabel.grid(row=2)
-    
   def endScreen(self):
     root.withdraw()
-    name = names[0]
+    name = names_list[0]
     file = open("leaderBoard.txt", "a")#opens highscores, text file in append mode
     if name == "admin_reset":#to wipe scores in the list, admin eneters with the name
       file = open("leaderBoard.txt", "w")
@@ -312,7 +293,27 @@ class End:
       
     open_endscreen = End(root)
     open_endscreen.listLabel.config(text=return_string)#this will config the label in the end screen class which is displaying the names of the top 5
-    End(root)  
+         
+class End:
+  def __init__(self, parent): # this function is called every time the class is being used to create a new object
+    background ="#BBD0FF"
+    self.end_box = Toplevel(root)
+    self.end_box.title("End Box")
+
+    self.end_frame = Frame(self.end_box, pady=40, padx=45, bg=background)
+    self.end_frame.grid()
+    
+    #end heading 
+    end_heading = Label (self.end_frame, text='YAY! You have now Completed the quiz!', font=("Comic Sans MS", "11"), bg=background, pady=15)
+    end_heading.grid(row=0)
+      
+    #exit button to end the quiz 
+    exit_button = Button (self.end_frame, text='Exit quiz', width=10, font=("Comic Sans MS", "11"), command=self.close_end, pady=10, padx=10)
+    exit_button.grid(row=4, pady=20, padx=5, sticky=E)
+
+    #if 1st place is available/ what they got 
+    self.listLabel = Label(self.end_frame, text="You are in 1st place!", font=("Comic Sans MS", "11"), width=40, bg=background, padx=10, pady=10)
+    self.listLabel.grid(row=2)
 
   def close_end(self):
     self.end_frame.destroy()
