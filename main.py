@@ -111,13 +111,27 @@ class username:
          self.name_collection()#coninuation from the continue button to the next compnent(the questions)
   
   def name_collection(self):
-    names_list
-    name=self.entry_box.get()
-    names_list.append(name)
-    print(names_list) #testing
-    self.quiz_frame.destroy()
-    #we destroy starter quiz_frame and open the questions quiz_frame instead which will be part of the Quiz object
-    Quiz(root)
+        name = self.entry_box.get()
+        if len(name) >= 3 and len(name) <= 15 and name.isalpha() \
+            == True:
+            names_list.append(name)
+            self.quiz_frame.destroy()  # destroying the second component
+            Quiz(root)  # after destroying second compnent moving on to the next componet (the quiz questions)
+        elif len(name) == 0:
+            self.continue_button.config(text='Please enter a Username\n ',
+                    font=("Comic Sans MS", "12", "normal"))
+        elif len(name) <= 3:
+
+                          # the user can only have 10 values this will stop the user from contuining
+
+            self.continue_button.config(text='username has to be \n more than 2 values\n '
+                    , font=("Comic Sans MS", "12", "normal"))
+        elif len(name) >= 15:
+            self.continue_button.config(text='username cant have\n more that 15 values \n'
+                    , font=("Comic Sans MS", "12", "normal"))
+        elif name.isalpha() == False:
+            self.continue_button.config(text="username must be made\n of alphabets\n"
+                    , font=("Comic Sans MS", "12", "normal"))
 
 
 names_list = []
